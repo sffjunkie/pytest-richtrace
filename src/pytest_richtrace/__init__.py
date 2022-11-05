@@ -46,6 +46,11 @@ def pytest_addoption(parser: pytest.Parser, pluginmanager: PytestPluginManager) 
         dest="output_html",
         help="Output the trace as an HTML file",
     )
+    group.addoption(
+        "--output-text",
+        dest="output_text",
+        help="Output the trace as a text file",
+    )
 
 
 def pytest_configure(config: pytest.Config) -> None:
