@@ -1,0 +1,12 @@
+__pycache__
+.venv
+.mypy_cache
+.pytest_cache
+.python-version
+.vscode
+.ipynb_checkpoints
+/dist
+/file
+out.txt
+process_all.sh
+poetry.toml
