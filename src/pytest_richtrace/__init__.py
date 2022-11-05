@@ -26,7 +26,7 @@ INDENT = "    "
 
 def pytest_addoption(parser: pytest.Parser, pluginmanager: PytestPluginManager) -> None:
     """
-    Add options to the pytest command line for the chewi plugin
+    Add options to the pytest command line for the richtrace plugin
     :param parser: The pytest command line parser
     """
     group = parser.getgroup("richtrace")
@@ -50,7 +50,7 @@ def pytest_addoption(parser: pytest.Parser, pluginmanager: PytestPluginManager) 
 
 def pytest_configure(config: pytest.Config) -> None:
     """
-    Configure the chewi plugin
+    Configure the richtrace
     :param config: The pytest config object
     """
     if config.option.rich_trace:
