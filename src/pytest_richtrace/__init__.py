@@ -31,6 +31,12 @@ def pytest_addoption(parser: pytest.Parser, pluginmanager: PytestPluginManager) 
     """
     group = parser.getgroup("richtrace")
     group.addoption(
+        "--rich-trace",
+        dest="rich_trace",
+        action="store_true",
+        help="Enable the richtrace plugin",
+    )
+    group.addoption(
         "--output-svg",
         dest="output_svg",
         help="Output the trace as an SVG file",
@@ -47,7 +53,8 @@ def pytest_configure(config: pytest.Config) -> None:
     Configure the chewi plugin
     :param config: The pytest config object
     """
-    config.pluginmanager.register(PytestRichTrace(config))
+    if config.option.rich_trace:
+        config.pluginmanager.register(PytestRichTrace(config))
 
 
 class PytestRichTrace:
