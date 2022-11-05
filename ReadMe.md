@@ -8,8 +8,16 @@ It uses `rich` to add formatting to the output.
 
 ### Using --collect-only
 
+```shell
+pytest -q --collect-only --rich-trace
+```
+
 <img src="./docs/output-collect-only.svg" style="width: 70rem;"/>
 
 ### Full test run
+
+```shell
+pytest -q --rich-trace
+```
 
 <img src="./docs/output.svg" style="width: 70rem;"/>
