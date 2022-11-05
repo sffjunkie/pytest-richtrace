@@ -103,8 +103,10 @@ class PytestRichTrace:
     ) -> Union[str, List[str]]:
         """string or list of strings to be displayed as header info for terminal reporting"""
         self.console.print("[hook]hook[/]: [hookname]pytest_report_header[/]")
+        startdir = PytestRichTrace._remove_cwd(startdir)
         self.console.print(f"{INDENT}startdir: {startdir}")
-        self.console.print(f"{INDENT}configfile: {config.inipath}")
+        inipath = PytestRichTrace._remove_cwd(config.inipath)
+        self.console.print(f"{INDENT}configfile: {inipath}")
 
         plugins = self.config.pluginmanager.list_plugin_distinfo()
         plugin_names = ", ".join(_plugin_nameversions(plugins))
@@ -170,7 +172,9 @@ class PytestRichTrace:
     ):
         self.console.print("[hook]hook[/]: [hookname]pytest_report_collectionfinish[/]")
         self.console.print(f"{INDENT}[key_name]config[/]: {config}")
+        start_path = PytestRichTrace._remove_cwd(start_path)
         self.console.print(f"{INDENT}[key_name]start_path[/]: {start_path}")
+        startdir = PytestRichTrace._remove_cwd(startdir)
         self.console.print(f"{INDENT}[key_name]startdir[/]: {startdir}")
 
         self.console.print(f"{INDENT}items:")
@@ -270,8 +274,10 @@ class PytestRichTrace:
     def _dump_config(self, config: pytest.Config):
         prefix = INDENT
         self.console.print(f"[blue]Using config[/]")
-        self.console.print(f"{prefix}[key_name]rootpath[/]: {config.rootpath}")
-        self.console.print(f"{prefix}[key_name]inipath[/]: {config.inipath}")
+        rootpath = PytestRichTrace._remove_cwd(config.rootpath)
+        self.console.print(f"{prefix}[key_name]rootpath[/]: {rootpath}")
+        inipath = PytestRichTrace._remove_cwd(config.inipath)
+        self.console.print(f"{prefix}[key_name]inipath[/]: {inipath}")
         options = "\n".join(
             wrap(
                 str(config.option),
@@ -342,6 +348,17 @@ class PytestRichTrace:
             )
         else:
             self.console.print("[green]" + "=" * self.console.width + "[/]")
+
+    @staticmethod
+    def _remove_cwd(dirname: str) -> str | None:
+        if dirname is None:
+            return
+
+        p = Path(dirname)
+        if p == Path.cwd():
+            return ".../" + p.name
+
+        return dirname
 
 
 def strip_escape(data: bytes) -> bytes:
