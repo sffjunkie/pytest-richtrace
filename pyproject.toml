@@ -18,6 +18,9 @@ black = { version = "^22.10.0", allow-prereleases = true }
 [tool.poetry.plugins."pytest11"]
 "pytest-richtrace" = "pytest_richtrace"
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
