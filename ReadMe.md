@@ -4,4 +4,6 @@ A pytest plugin that dumps the stages of the pytest testing process to the termi
 
 It uses `rich` to add formatting to the output.
 
-![](./collect-only.svg)
+## Sample output
+
+<img src="./docs/collect-only.svg" style="width: 80rem;"/>
