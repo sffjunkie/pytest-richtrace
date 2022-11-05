@@ -154,6 +154,18 @@ class PytestRichTrace:
         if report is not None:
             self._dump_collect_report(report)
 
+    def pytest_collect_file(
+        self, path: "LocalPath", parent: pytest.Collector
+    ) -> Optional[pytest.Collector]:
+        self.console.print("[hook]hook[/]: [hookname]pytest_collect_file[/]")
+        self.console.print(f"{INDENT}[key_name]path[/]: {str(path)}")
+
+    def pytest_pycollect_makemodule(
+        self, path: "LocalPath", parent
+    ) -> Optional[pytest.Module]:
+        self.console.print("[hook]hook[/]: [hookname]pytest_pycollect_makemodule[/]")
+        self.console.print(f"{INDENT}[key_name]path[/]: {str(path)}")
+
     def pytest_itemcollected(self, item: pytest.Item):
         """Item collected"""
         self.console.print(
@@ -162,6 +174,14 @@ class PytestRichTrace:
 
     def pytest_deselected(self, items: list[pytest.Item]):
         self.console.print("[hook]hook[/]: [hookname]pytest_deselected[/]", items)
+
+    def pytest_collection_modifyitems(
+        self, session: Session, config: pytest.Config, items: List[pytest.Item]
+    ) -> None:
+        self.console.print("[hook]hook[/]: [hookname]pytest_collection_modifyitems[/]")
+        self.console.print(f"{INDENT}[key_name]items[/]:")
+        item_text = "\n".join([repr(f) for f in items])
+        self.console.print(indent(item_text, INDENT * 2))
 
     def pytest_collectreport(self, report: pytest.CollectReport):
         """Collector finished collecting"""
