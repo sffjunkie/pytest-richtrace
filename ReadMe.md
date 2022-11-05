@@ -6,4 +6,10 @@ It uses `rich` to add formatting to the output.
 
 ## Sample output
 
-<img src="./docs/collect-only.svg" style="width: 80rem;"/>
+### Using --collect-only
+
+<img src="./docs/output-collect-only.svg" style="width: 70rem;"/>
+
+### Full test run
+
+<img src="./docs/output.svg" style="width: 70rem;"/>
