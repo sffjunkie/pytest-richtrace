@@ -149,7 +149,7 @@ class PytestRichTrace:
     def pytest_make_collect_report(self, collector, report=None):
         """Creates/Modifies the collect report"""
         self.console.print("[hook]hook[/]: [hookname]pytest_make_collect_report[/]")
-        self.console.print(f"{INDENT}collector: {repr(collector)}")
+        self.console.print(f"{INDENT}[key_name]collector[/]: {repr(collector)}")
         if report is not None:
             self._dump_collect_report(report)
 
@@ -168,7 +168,7 @@ class PytestRichTrace:
     def pytest_itemcollected(self, item: pytest.Item):
         """Item collected"""
         self.console.print(
-            "[hook]hook[/] [hookname]pytest_itemcollected[/]", repr(item)
+            "[hook]hook[/]: [hookname]pytest_itemcollected[/]", repr(item)
         )
 
     def pytest_deselected(self, items: list[pytest.Item]):
@@ -201,7 +201,7 @@ class PytestRichTrace:
         startdir = PytestRichTrace._remove_cwd(startdir)
         self.console.print(f"{INDENT}[key_name]startdir[/]: {startdir}")
 
-        self.console.print(f"{INDENT}items:")
+        self.console.print(f"{INDENT}[key_name]items[/]:")
         item_text = "\n".join([repr(f) for f in items])
         self.console.print(indent(item_text, INDENT * 2))
 
