@@ -1,25 +1,24 @@
+import platform
 import re
 import sys
-import platform
 from pathlib import Path
 from pprint import pprint
 from textwrap import indent, wrap
-from typing import Any, NamedTuple, Union, List
+from typing import Any, List, NamedTuple, Optional, Union
 from urllib.parse import urlunsplit
 
+import _pytest._version
+import pluggy
 import pytest
 import rich
 import rich.console
 import rich.theme
-import pluggy
-from _pytest.python import PyCollector
-from _pytest.nodes import File
 from _pytest.config import PytestPluginManager
 from _pytest.main import Session
+from _pytest.nodes import File
+from _pytest.python import PyCollector
 from _pytest.reports import TestReport
 from _pytest.terminal import TerminalReporter, _plugin_nameversions
-import _pytest._version
-
 
 INDENT = "    "
 
