@@ -24,14 +24,38 @@ To activate the plugin add the `--rich-trace` option to the `pytest` command lin
 pytest --rich-trace --collect-only
 ```
 
-![--collect-only output](/output-collect-only.svg | width=70rem)
+![--collect-only output](docs/quickstart/output-collect-only.svg | width=70rem)
 
 ### Full test run
 
-- Quiet
+#### Quiet output
 
-    ```shell
-    pytest --rich-trace -q
-    ```
+```shell
+pytest --rich-trace -q
+```
 
-    ![quiet output](/output-quiet.svg | width=70rem)
+![quiet output](docs/quickstart/output-quiet.svg | width=70rem)
+
+#### Normal output
+
+```shell
+pytest --rich-trace
+```
+
+![normal output](docs/quickstart/output.svg | width=70rem)
+
+### Verbose output
+
+```shell
+pytest --rich-trace --verbose
+```
+
+![verbose output](docs/quickstart/output-verbose.svg | width=70rem)
+
+### --collect-only output
+
+```shell
+pytest --rich-trace --collect-only
+```
+
+![collect-only output](docs/quickstart/output-collect-only.svg | width=70rem)
