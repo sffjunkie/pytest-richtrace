@@ -10,3 +10,6 @@ __pycache__
 out.txt
 process_all.sh
 poetry.toml
+.coverage
+
+todo.md

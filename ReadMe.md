@@ -4,20 +4,34 @@ A pytest plugin that dumps the stages of the pytest testing process to the termi
 
 It uses `rich` to add formatting to the output.
 
+## Installation
+
+Install using pip
+
+```shell
+pip install pytest_richtrace
+```
+
+## Usage
+
+To activate the plugin add the `--rich-trace` option to the `pytest` command line.
+
 ## Sample output
 
 ### Using --collect-only
 
 ```shell
-pytest -q --collect-only --rich-trace
+pytest --rich-trace --collect-only
 ```
 
-<img src="./docs/output-collect-only.svg" style="width: 70rem;"/>
+![--collect-only output](/output-collect-only.svg | width=70rem)
 
 ### Full test run
 
-```shell
-pytest -q --rich-trace
-```
+- Quiet
 
-<img src="./docs/output.svg" style="width: 70rem;"/>
+    ```shell
+    pytest --rich-trace -q
+    ```
+
+    ![quiet output](/output-quiet.svg | width=70rem)

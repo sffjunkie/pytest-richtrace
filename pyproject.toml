@@ -1,24 +1,28 @@
 [tool.poetry]
 name = "pytest-richtrace"
-version = "0.1.0"
-description = ""
+version = "0.2.0"
+description = "A pytest plugin to display the names and information of the pytest hook functions as they are executed"
 authors = ["Simon Kennedy <sffjunkie+code@gmail.com>"]
+license = "Apache-2.0"
 readme = "ReadMe.md"
 packages = [{ include = "pytest_richtrace", from = "src" }]
 
+[tool.poetry.plugins]
+pytest11 = { pytest_richtrace = "pytest_richtrace" }
+
 [tool.poetry.dependencies]
-python = "^3.9"
-rich = "^12.6.0"
-pytest = "^7.2.0"
+python = "^3.11"
+rich = "^13.3.5"
+pydantic = { git = "https://github.com/pydantic/pydantic" }
 
 [tool.poetry.group.dev.dependencies]
-black = { version = "^22.10.0", allow-prereleases = true }
-
-[tool.poetry.plugins."pytest11"]
-"pytest-richtrace" = "pytest_richtrace"
+mkdocs = "^1.4.3"
+mypy = "^1.3.0"
+pytest = "^7.3.1"
+mkdocs-material = "^9.1.13"
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests/rich_trace"]
 
 [build-system]
 requires = ["poetry-core"]

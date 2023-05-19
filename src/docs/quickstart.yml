@@ -1,0 +1,30 @@
+site_name: pytest-richtrace
+site_url: https://sffjunkie.github.io/pytest-richtrace
+
+repo_name: sffjunkie/pytest-richtrace
+repo_url: https://github.com/sffjunkie/pytest-richtrace
+
+site_dir: ../../docs/quickstart/
+docs_dir: quickstart
+nav:
+  - Home: index.md
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: orange1
+      accent: orange1
+      toggle:
+        icon: material/lightbulb-outline
+        name: "Switch to dark mode"
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: orange1
+      accent: orange1
+      toggle:
+        icon: material/lightbulb
+        name: "Switch to light mode"
+
+markdown_extensions:
+  - attr_list
