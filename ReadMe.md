@@ -24,7 +24,7 @@ To activate the plugin add the `--rich-trace` option to the `pytest` command lin
 pytest --rich-trace --collect-only
 ```
 
-![--collect-only output](docs/quickstart/output-collect-only.svg | width=70rem)
+<img src="/docs/quickstart/output-collect-only.svg" width="70rem" alt="--collect-only output">
 
 ### Full test run
 
@@ -34,7 +34,7 @@ pytest --rich-trace --collect-only
 pytest --rich-trace -q
 ```
 
-![quiet output](docs/quickstart/output-quiet.svg | width=70rem)
+![quiet output](/docs/quickstart/output-quiet.svg | width=70rem)
 
 #### Normal output
 
@@ -42,7 +42,7 @@ pytest --rich-trace -q
 pytest --rich-trace
 ```
 
-![normal output](docs/quickstart/output.svg | width=70rem)
+![normal output](/docs/quickstart/output.svg | width=70rem)
 
 ### Verbose output
 
@@ -50,7 +50,7 @@ pytest --rich-trace
 pytest --rich-trace --verbose
 ```
 
-![verbose output](docs/quickstart/output-verbose.svg | width=70rem)
+![verbose output](/docs/quickstart/output-verbose.svg | width=70rem)
 
 ### --collect-only output
 
@@ -58,4 +58,4 @@ pytest --rich-trace --verbose
 pytest --rich-trace --collect-only
 ```
 
-![collect-only output](docs/quickstart/output-collect-only.svg | width=70rem)
+![collect-only output](/docs/quickstart/output-collect-only.svg | width=70rem)
