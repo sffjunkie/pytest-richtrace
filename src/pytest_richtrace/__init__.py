@@ -17,12 +17,6 @@ def pytest_addoption(parser: pytest.Parser, pluginmanager: PytestPluginManager) 
         help="Enable the richtrace plugin",
     )
     group.addoption(
-        "--rich-trace-events",
-        dest="rich_trace_events",
-        action="store_true",
-        help="Enable printing of events",
-    )
-    group.addoption(
         "--output-svg",
         dest="output_svg",
         help="Output the trace as an SVG file",
