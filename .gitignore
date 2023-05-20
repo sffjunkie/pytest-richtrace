@@ -13,4 +13,4 @@ poetry.toml
 .coverage
 
 todo.md
-docs
+/docs
