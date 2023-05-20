@@ -1,4 +1,7 @@
-.PHONY: build build-quickstart serve-quickstart
+.PHONY: check build build-quickstart serve-quickstart
+check:
+	pre-commit run --files src/pytest_richtrace/*
+
 build:
 	poetry build
 
