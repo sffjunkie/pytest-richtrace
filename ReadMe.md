@@ -4,6 +4,8 @@ A pytest plugin that dumps the stages of the pytest testing process to the termi
 
 It uses `rich` to add formatting to the output.
 
+> **NOTE**: This project is not currently available on pypi.org as it uses the V2 version of pydantic from git and pypi does not allow packages to be uploaded with this use of git URLs.
+
 ## Installation
 
 Install using pip
