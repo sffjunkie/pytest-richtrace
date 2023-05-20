@@ -1,5 +1,6 @@
 from datetime import datetime
-from pytest_richtrace.event import EventBus, Event
+
+from pytest_richtrace.event import Event, EventBus
 
 
 def test_event_list_new():
