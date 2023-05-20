@@ -26,7 +26,7 @@ To activate the plugin add the `--rich-trace` option to the `pytest` command lin
 pytest --rich-trace -q
 ```
 
-<img src="docs/quickstart/output-quiet.svg" width="700px" alt="quiet output">
+<img src="https://github.com/sffjunkie/pytest-richtrace/raw/main/docs/quickstart/output-quiet.svg" width="700px" alt="quiet output">
 
 #### Normal output
 
@@ -34,7 +34,7 @@ pytest --rich-trace -q
 pytest --rich-trace
 ```
 
-<img src="docs/quickstart/output.svg" width="700px" alt="normal output">
+<img src="https://github.com/sffjunkie/pytest-richtrace/raw/main/docs/quickstart/output.svg" width="700px" alt="normal output">
 
 ### Verbose output
 
@@ -42,7 +42,7 @@ pytest --rich-trace
 pytest --rich-trace --verbose
 ```
 
-<img src="docs/quickstart/output-verbose.svg" width="700px" alt="verbose output">
+<img src="https://github.com/sffjunkie/pytest-richtrace/raw/main/docs/quickstart/output-verbose.svg" width="700px" alt="verbose output">
 
 ### --collect-only output
 
@@ -50,4 +50,4 @@ pytest --rich-trace --verbose
 pytest --rich-trace --collect-only
 ```
 
-<img src="docs/quickstart/output-collect-only.svg" width="700px" alt="--collect-only output">
+<img src="https://github.com/sffjunkie/pytest-richtrace/raw/main/docs/quickstart/output-collect-only.svg" width="700px" alt="--collect-only output">
