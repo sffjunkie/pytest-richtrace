@@ -20,6 +20,7 @@ mkdocs = "^1.4.3"
 mypy = "^1.3.0"
 pytest = "^7.3.1"
 mkdocs-material = "^9.1.13"
+pre-commit = "^3.3.2"
 
 [tool.pytest.ini_options]
 testpaths = ["tests/rich_trace"]
