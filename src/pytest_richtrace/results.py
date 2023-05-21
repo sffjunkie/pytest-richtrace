@@ -67,6 +67,8 @@ class TestCollectionRecord(BaseModel):
     count: int = 0
     start: datetime | None = None
     stop: datetime | None = None
+    precise_start: PerfTime = 0.0
+    precise_stop: PerfTime = 0.0
     error: dict[ModuleId, BaseException] = Field(default_factory=dict)
     skip: dict[NodeId, list[SkipInfo]] = Field(default_factory=dict)
     xfail: dict[NodeId, list[XfailInfo]] = Field(default_factory=dict)

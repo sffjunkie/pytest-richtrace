@@ -189,6 +189,8 @@ class PytestRichTrace:
         )
 
     def _test_run_finished(self, item_id: ItemId):
+        self.results.execute.stop = datetime.now()
+        self.results.execute.precise_stop = time.perf_counter()
         self.publisher.publish(
             events.ExecutionFinished,
             item_id=item_id,

@@ -1,4 +1,6 @@
 import logging
+import time
+from datetime import datetime
 
 import pytest
 from _pytest.main import Session
@@ -34,6 +36,10 @@ class TestExecutionObserver:
     @pytest.hookimpl
     def pytest_runtestloop(self, session: Session) -> None:
         logging.debug("collector: pytest_runtestloop")
+
+        self.results.execute.start = datetime.now()
+        self.results.execute.precise_start = time.perf_counter()
+
         self.publisher.publish(events.ExecutionStarted, item_id=session.nodeid)
 
     @pytest.hookimpl

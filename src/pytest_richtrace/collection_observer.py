@@ -1,4 +1,6 @@
 import logging
+import time
+from datetime import datetime
 from pathlib import Path
 
 import pytest
@@ -36,6 +38,10 @@ class CollectionObserver:
     def pytest_collection(self, session: pytest.Session) -> None:
         logging.debug("collector: pytest_collection")
         location = session.nodeid if session.nodeid else None
+
+        self.results.collect.start = datetime.now()
+        self.results.collect.precise_start = time.perf_counter()
+
         self.publisher.publish(
             events.CollectionStarted,
             item_id=location,
@@ -195,6 +201,8 @@ class CollectionObserver:
     @pytest.hookimpl(trylast=True)
     def pytest_collection_finish(self, session: pytest.Session) -> None:
         logging.debug("collector: pytest_collection_finish")
+        self.results.collect.stop = datetime.now()
+        self.results.collect.precise_stop = time.perf_counter()
         self.publisher.publish(
             events.CollectionFinished,
             session.nodeid,
