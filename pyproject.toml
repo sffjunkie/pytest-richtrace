@@ -5,7 +5,10 @@ description = "A pytest plugin that displays the names and information of the py
 authors = ["Simon Kennedy <sffjunkie+code@gmail.com>"]
 license = "Apache-2.0"
 readme = "ReadMe.md"
-packages = [{ include = "pytest_richtrace", from = "src" }]
+packages = [
+    { include = "pytest_richtrace", from = "src" },
+    { include = "pytest_richtrace/py.typed", from = "src" },
+]
 
 [tool.poetry.plugins]
 pytest11 = { pytest_richtrace = "pytest_richtrace" }
