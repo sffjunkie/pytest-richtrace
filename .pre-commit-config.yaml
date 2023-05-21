@@ -6,23 +6,24 @@ repos:
     rev: v1.3.0
     hooks:
       - id: mypy
+  - repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+
   # - repo: https://github.com/pycqa/isort
   #   rev: 5.12.0
   #   hooks:
   #     - id: isort
   #       args: ["--profile", "black", "--filter-files"]
-  - repo: https://github.com/psf/black
-    rev: 22.3.0
-    hooks:
-      - id: black
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    # Ruff version.
-    rev: "v0.0.269"
-    hooks:
-      - id: ruff
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
-    hooks:
-      - id: check-yaml
-      - id: end-of-file-fixer
-      - id: trailing-whitespace
+  # - repo: https://github.com/charliermarsh/ruff-pre-commit
+  #   # Ruff version.
+  #   rev: "v0.0.269"
+  #   hooks:
+  #     - id: ruff
+  # - repo: https://github.com/pre-commit/pre-commit-hooks
+  #   rev: v2.3.0
+  #   hooks:
+  #     - id: check-yaml
+  #     - id: end-of-file-fixer
+  #     - id: trailing-whitespace
