@@ -47,6 +47,7 @@ class TestExecutionObserver:
         self, nodeid: str, location: tuple[str, int | None, str]
     ) -> None:
         logging.debug("collector: pytest_runtest_logstart")
+        self.results.execute.count += 1
         self._current_execution_node = TestExecutionNodeRecord(nodeid=nodeid)
         module, line, func = location
         self.publisher.publish(
