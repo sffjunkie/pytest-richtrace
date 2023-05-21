@@ -1,8 +1,9 @@
+import traceback
 from datetime import datetime
 from enum import StrEnum
 from typing import Type, TypeVar
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_serializer
 
 from .item import ModuleId, NodeId
 
@@ -35,14 +36,29 @@ class SkipInfo(BaseModel):
     markers: list[Marker] = Field(default_factory=list)
 
 
+RaisesType = Type[BaseException] | tuple[Type[BaseException], ...]
+
+
 class XfailInfo(BaseModel):
     model_config = {"arbitrary_types_allowed": True}
 
     reason: str
-    raises: Type[BaseException] | tuple[Type[BaseException], ...] | None
+    raises: RaisesType | None
     run: bool
     strict: bool
     markers: list[Marker] = Field(default_factory=list)
+
+    @field_serializer("raises")
+    def serialize_exception(self, exc: RaisesType | None, _info) -> str:
+        if exc is None:
+            return ""
+
+        if isinstance(exc, tuple):
+            excs = exc
+        else:
+            excs = (exc,)
+
+        return ", ".join([str(exc.__name__) for exc in excs])
 
 
 class TestCollectionRecord(BaseModel):
@@ -62,6 +78,15 @@ class TestCollectionRecord(BaseModel):
         yield "xfail", self.xfail
         if self.deselected:
             yield "deselected", self.deselected
+
+    @field_serializer("error")
+    def serialize_exception(
+        self, exc_info: dict[ModuleId, BaseException], _info
+    ) -> dict[ModuleId, str]:
+        def format_exc(exc: BaseException) -> str:
+            return "".join(traceback.format_exception_only(type(exc), exc)).rstrip("\n")
+
+        return {k: format_exc(exc) for k, exc in exc_info.items()}
 
 
 class TestExecutionResultRecord(BaseModel):
@@ -87,8 +112,13 @@ class TestExecutionResultRecord(BaseModel):
         yield "function", self.function
         yield "module", self.module
         yield "line", self.line
-        if self.traceback is not None:
-            yield "traceback", self.traceback
+    @field_serializer("exception")
+    def serialize_exception(self, exc, _info) -> str:
+        if exc is None:
+            return ""
+
+        msg = "".join(traceback.format_exception_only(exc)).rstrip("\n")
+        return msg
 
 
 class TestExecutionNodeRecord(BaseModel):

@@ -75,6 +75,11 @@ class PytestRichTrace:
         item_id = session.nodeid if session.nodeid else ""
         self._test_run_finished(item_id)
 
+        if "output_json" in self.config.option and self.config.option.output_json:
+            data = self.results.model_dump_json(indent=4)
+            with open(self.config.option.output_json, "w") as fp:
+                fp.write(data)
+
     def duration(self) -> timedelta:
         stop = self.results.stop
         start = self.results.start

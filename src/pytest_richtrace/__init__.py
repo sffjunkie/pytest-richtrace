@@ -31,6 +31,11 @@ def pytest_addoption(parser: pytest.Parser, pluginmanager: PytestPluginManager) 
         dest="output_text",
         help="Output the trace as a text file",
     )
+    group.addoption(
+        "--output-json",
+        dest="output_json",
+        help="Output the results as JSON as a text file.",
+    )
 
 
 @hookimpl(trylast=True)
