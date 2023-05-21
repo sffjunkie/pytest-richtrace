@@ -114,6 +114,9 @@ class TestExecutionResultRecord(BaseModel):
         yield "function", self.function
         yield "module", self.module
         yield "line", self.line
+        if self.exception is not None:
+            yield "exception", self.exception
+
     @field_serializer("exception")
     def serialize_exception(self, exc, _info) -> str:
         if exc is None:
