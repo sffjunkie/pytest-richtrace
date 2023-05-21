@@ -742,7 +742,7 @@ class RichReporter:
             f"Deselected ({len(self.results.collect.deselected)})",
             color="deselected",
         )
-        for nodeid in self.results.execute.xpassed:
+        for nodeid in self.results.collect.deselected:
             print_value(self.console, nodeid, prefix=INDENT, color="deselected")
 
     def _print_execute_errors(self, collect_error_count):
