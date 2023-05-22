@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Callable
 from uuid import uuid1
 
@@ -55,7 +55,7 @@ DatetimeGenerator = Callable[[], datetime]
 
 
 def CLOCK() -> datetime:
-    return datetime.now()
+    return datetime.now(tz=timezone.utc)
 
 
 def EVENT_ID_GENERATOR() -> str:

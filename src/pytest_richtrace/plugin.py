@@ -3,7 +3,7 @@ import platform
 import sys
 import time
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 import _pytest
@@ -53,7 +53,7 @@ class PytestRichTrace:
 
         item_id = session.nodeid if session.nodeid else ""
 
-        start_time = datetime.now()
+        start_time = datetime.now(tz=timezone.utc)
         self.results.start = start_time
 
         precise_start = time.perf_counter()
@@ -67,7 +67,7 @@ class PytestRichTrace:
         """Publish a TestRunFinished event"""
         logging.debug("session: pytest_sessionfinish")
 
-        finish_time = datetime.now()
+        finish_time = datetime.now(tz=timezone.utc)
         self.results.finish = finish_time
 
         precise_finish = time.perf_counter()
@@ -192,7 +192,7 @@ class PytestRichTrace:
         )
 
     def _test_run_finished(self, item_id: ItemId):
-        self.results.execute.finish = datetime.now()
+        self.results.execute.finish = datetime.now(tz=timezone.utc)
         self.results.execute.precise_finish = time.perf_counter()
         self.publisher.publish(
             events.ExecutionFinished,

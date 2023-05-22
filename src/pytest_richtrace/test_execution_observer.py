@@ -1,6 +1,6 @@
 import logging
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pytest
 from _pytest.main import Session
@@ -37,7 +37,7 @@ class TestExecutionObserver:
     def pytest_runtestloop(self, session: Session) -> None:
         logging.debug("collector: pytest_runtestloop")
 
-        self.results.execute.start = datetime.now()
+        self.results.execute.start = datetime.now(tz=timezone.utc)
         self.results.execute.precise_start = time.perf_counter()
 
         self.publisher.publish(events.ExecutionStarted, item_id=session.nodeid)

@@ -1,6 +1,6 @@
 import logging
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pytest
@@ -39,7 +39,7 @@ class CollectionObserver:
         logging.debug("collector: pytest_collection")
         location = session.nodeid if session.nodeid else None
 
-        self.results.collect.start = datetime.now()
+        self.results.collect.start = datetime.now(tz=timezone.utc)
         self.results.collect.precise_start = time.perf_counter()
 
         self.publisher.publish(
@@ -201,7 +201,7 @@ class CollectionObserver:
     @pytest.hookimpl(trylast=True)
     def pytest_collection_finish(self, session: pytest.Session) -> None:
         logging.debug("collector: pytest_collection_finish")
-        self.results.collect.finish = datetime.now()
+        self.results.collect.finish = datetime.now(tz=timezone.utc)
         self.results.collect.precise_finish = time.perf_counter()
         self.publisher.publish(
             events.CollectionFinished,
