@@ -96,7 +96,7 @@ class TestExecutionObserver:
         result.xdist = hasattr(report, "node")
 
         self._current_execution_node.stages[when].precise_start = report.start
-        self._current_execution_node.stages[when].precise_stop = report.stop
+        self._current_execution_node.stages[when].precise_finish = report.stop
 
         self._current_execution_node.stages[when].when = report.when
         self._current_execution_node.stages[when].outcome = report.outcome

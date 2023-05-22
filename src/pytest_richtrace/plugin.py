@@ -67,10 +67,11 @@ class PytestRichTrace:
         """Publish a TestRunFinished event"""
         logging.debug("session: pytest_sessionfinish")
 
-        stop_time = datetime.now()
-        self.results.stop = stop_time
-        precise_stop = time.perf_counter()
-        self.results.precise_stop = precise_stop
+        finish_time = datetime.now()
+        self.results.finish = finish_time
+
+        precise_finish = time.perf_counter()
+        self.results.precise_finish = precise_finish
 
         item_id = session.nodeid if session.nodeid else ""
         self._test_run_finished(item_id)
@@ -81,24 +82,26 @@ class PytestRichTrace:
                 fp.write(data)
 
     def duration(self) -> timedelta:
-        stop = self.results.stop
+        finish = self.results.finish
         start = self.results.start
-        if stop is None or start is None:
-            raise ValueError(f"Stop time {stop} is before start time {start}")
-        if stop < start:
-            raise ValueError("end time is before start time")
+        if finish is None or start is None:
+            raise ValueError(f"Finish time {finish} is before start time {start}")
+        if finish < start:
+            raise ValueError("finish time is before start time")
 
-        return stop - start
+        return finish - start
 
     def duration_precise(self) -> float:
-        stop = self.results.precise_stop
+        finish = self.results.precise_finish
         start = self.results.precise_start
-        if stop is None or start is None:
-            raise ValueError(f"Precise stop time {stop} is before start time {start}")
-        if stop < start:
-            raise ValueError("end time is before start time")
+        if finish is None or start is None:
+            raise ValueError(
+                f"Precise finish time {finish} is before start time {start}"
+            )
+        if finish < start:
+            raise ValueError("finish time is before start time")
 
-        return stop - start
+        return finish - start
 
     def _create_console(self, config):
         record = False
@@ -189,22 +192,22 @@ class PytestRichTrace:
         )
 
     def _test_run_finished(self, item_id: ItemId):
-        self.results.execute.stop = datetime.now()
-        self.results.execute.precise_stop = time.perf_counter()
+        self.results.execute.finish = datetime.now()
+        self.results.execute.precise_finish = time.perf_counter()
         self.publisher.publish(
             events.ExecutionFinished,
             item_id=item_id,
             payload={
-                "stop": self.results.stop,
-                "precise_stop": self.results.precise_stop,
+                "finish": self.results.finish,
+                "precise_finish": self.results.precise_finish,
             },
         )
         self.publisher.publish(
             events.TestRunFinished,
             item_id=item_id,
             payload={
-                "stop": self.results.stop,
-                "precise_stop": self.results.precise_stop,
+                "finish": self.results.finish,
+                "precise_finish": self.results.precise_finish,
             },
         )
         self.save_output()

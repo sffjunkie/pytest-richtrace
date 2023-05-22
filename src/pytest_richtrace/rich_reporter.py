@@ -535,7 +535,7 @@ class RichReporter:
         table.add_row("module", module)
         table.add_row("line", str(line))
         table.add_row("start", str(report.start))
-        table.add_row("stop", str(report.stop))
+        table.add_row("finish", str(report.stop))
         table.add_row("duration", str(report.duration))
         # table.add_row("keywords", str(report.keywords))
 

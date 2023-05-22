@@ -66,9 +66,9 @@ class TestCollectionRecord(BaseModel):
 
     count: int = 0
     start: datetime | None = None
-    stop: datetime | None = None
+    finish: datetime | None = None
     precise_start: PerfTime = 0.0
-    precise_stop: PerfTime = 0.0
+    precise_finish: PerfTime = 0.0
     error: dict[ModuleId, BaseException] = Field(default_factory=dict)
     skip: dict[NodeId, list[SkipInfo]] = Field(default_factory=dict)
     xfail: dict[NodeId, list[XfailInfo]] = Field(default_factory=dict)
@@ -100,13 +100,13 @@ class TestExecutionResultRecord(BaseModel):
     module: ModuleId = ""
     line: int | None = None
     precise_start: PerfTime = 0.0
-    precise_stop: PerfTime = 0.0
+    precise_finish: PerfTime = 0.0
     xfail: bool = False
     xdist: bool = False
     exception: BaseException | None = None
 
     def duration(self) -> PerfTime:
-        return self.precise_stop - self.precise_start
+        return self.precise_finish - self.precise_start
 
     def __rich_repr__(self):
         yield "outcome", self.outcome
@@ -135,9 +135,9 @@ class TestExecutionNodeRecord(BaseModel):
 class TestExecutionRecord(BaseModel):
     count: int = 0
     start: datetime | None = None
-    stop: datetime | None = None
+    finish: datetime | None = None
     precise_start: PerfTime = 0.0
-    precise_stop: PerfTime = 0.0
+    precise_finish: PerfTime = 0.0
 
     nodes: dict[NodeId, TestExecutionNodeRecord] = Field(default_factory=dict)
 
@@ -161,9 +161,9 @@ class TestRunResults(BaseModel):
     run_id: str
 
     start: datetime | None = None
-    stop: datetime | None = None
+    finish: datetime | None = None
     precise_start: PerfTime = 0.0
-    precise_stop: PerfTime = 0.0
+    precise_finish: PerfTime = 0.0
 
     collect: TestCollectionRecord = Field(default_factory=TestCollectionRecord)
     execute: TestExecutionRecord = Field(default_factory=TestExecutionRecord)

@@ -201,8 +201,8 @@ class CollectionObserver:
     @pytest.hookimpl(trylast=True)
     def pytest_collection_finish(self, session: pytest.Session) -> None:
         logging.debug("collector: pytest_collection_finish")
-        self.results.collect.stop = datetime.now()
-        self.results.collect.precise_stop = time.perf_counter()
+        self.results.collect.finish = datetime.now()
+        self.results.collect.precise_finish = time.perf_counter()
         self.publisher.publish(
             events.CollectionFinished,
             session.nodeid,
