@@ -16,7 +16,7 @@ pytest11 = { pytest_richtrace = "pytest_richtrace" }
 [tool.poetry.dependencies]
 python = "^3.11"
 rich = "^13.3.5"
-pydantic = { git = "https://github.com/pydantic/pydantic" }
+pydantic = { version = ">=2.0a1", allow-prereleases = true }
 
 [tool.poetry.group.dev.dependencies]
 mkdocs = "^1.4.3"
