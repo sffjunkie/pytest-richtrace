@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.2.1
+
+### Removed
+
+Removed note about pydantic
+
 ## 0.2.0 2023-05-19
 
 ### Added

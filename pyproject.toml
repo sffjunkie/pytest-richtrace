@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pytest-richtrace"
-version = "0.2.0"
+version = "0.2.1"
 description = "A pytest plugin that displays the names and information of the pytest hook functions as they are executed."
 authors = ["Simon Kennedy <sffjunkie+code@gmail.com>"]
 license = "Apache-2.0"
